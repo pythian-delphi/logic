@@ -1,0 +1,522 @@
+digraph G {
+	compound=true
+	subgraph "cluster_#22" {
+		node [color=white style=filled]
+		style=filled
+		color=lightgrey
+		node [shape=box]
+		"#22_in_#0_A" [label="#0 A"]
+		"#22_in_#0_B" [label="#0 B"]
+		"#22_in_#3_A" [label="#3 A"]
+		"#22_in_#8_D" [label="#8 D"]
+		node [shape=ellipse]
+		"#22_#0" [label="#0 f"]
+		"#22_#1" [label="#1 dup"]
+		"#22_#2" [label="#2 g"]
+		"#22_#3" [label="#3 id"]
+		"#22_#4" [label="#4 h"]
+		"#22_#5" [label="#5 swap"]
+		"#22_#6" [label="#6 codup"]
+		"#22_#7" [label="#7 id"]
+		"#22_#8" [label="#8 swap"]
+		"#22_#9" [label="#9 i"]
+		"#22_#19" [label="#19 junction"]
+		"#22_#10" [label="#10 id"]
+		node [shape=box]
+		"#22_out_#6_D" [label="#6 D"]
+		"#22_out_#7_C" [label="#7 C"]
+		"#22_out_#10_C=>A" [label="#10 C=>A"]
+		"#22_in_#0_A" -> "#22_#0" [label="#0 A"]
+		"#22_in_#0_B" -> "#22_#0" [label="#0 B"]
+		"#22_in_#3_A" -> "#22_#3" [label="#3 A"]
+		"#22_in_#8_D" -> "#22_#8" [label="#8 D"]
+		"#22_#6" -> "#22_out_#6_D" [label="#6 D"]
+		"#22_#7" -> "#22_out_#7_C" [label="#7 C"]
+		"#22_#10" -> "#22_out_#10_C=>A" [label="#10 C=>A"]
+		"#22_#0" -> "#22_#1" [label=C]
+		"#22_#1" -> "#22_#2" [label=C]
+		"#22_#1" -> "#22_#2" [label=C]
+		"#22_#3" -> "#22_#4" [label=A]
+		"#22_#4" -> "#22_#5" [label=C]
+		"#22_#4" -> "#22_#5" [label=D]
+		"#22_#2" -> "#22_#6" [label=D]
+		"#22_#5" -> "#22_#6" [label=D]
+		"#22_#5" -> "#22_#7" [label=C]
+		"#22_#8" -> "#22_#9" [label=D]
+		"#22_#8" -> "#22_#9" [label=C]
+		"#22_#8" -> "#22_#19" [label=C]
+		"#22_#9" -> "#22_#19" [label=A]
+		"#22_#19" -> "#22_#10" [label="C=>A"]
+		label="cluster_#22"
+	}
+	"#22_Prod" [color=skyblue style=filled]
+	"#22_Prod" -> "#22_in_#8_D" [lhead="cluster_#22"]
+	subgraph "cluster_#21" {
+		node [color=white style=filled]
+		style=filled
+		color=lightgrey
+		node [shape=box]
+		"#21_in_#8_D" [label="#8 D"]
+		node [shape=ellipse]
+		"#21_#8" [label="#8 swap"]
+		"#21_#9" [label="#9 i"]
+		"#21_#19" [label="#19 junction"]
+		"#21_#10" [label="#10 id"]
+		node [shape=box]
+		"#21_out_#10_C=>A" [label="#10 C=>A"]
+		"#21_in_#8_D" -> "#21_#8" [label="#8 D"]
+		"#21_#10" -> "#21_out_#10_C=>A" [label="#10 C=>A"]
+		"#21_#8" -> "#21_#9" [label=D]
+		"#21_#8" -> "#21_#9" [label=C]
+		"#21_#8" -> "#21_#19" [label=C]
+		"#21_#9" -> "#21_#19" [label=A]
+		"#21_#19" -> "#21_#10" [label="C=>A"]
+		label="cluster_#21"
+	}
+	"#21_Comp" [color=skyblue style=filled]
+	"#21_Comp" -> "#21_in_#8_D" [lhead="cluster_#21"]
+	subgraph "cluster_#10" {
+		node [color=white style=filled]
+		style=filled
+		color=lightgrey
+		node [shape=box]
+		"#10_in_#10_X" [label="#10 X"]
+		node [shape=ellipse]
+		"#10_#10" [label="#10 id"]
+		node [shape=box]
+		"#10_out_#10_X" [label="#10 X"]
+		"#10_in_#10_X" -> "#10_#10" [label="#10 X"]
+		"#10_#10" -> "#10_out_#10_X" [label="#10 X"]
+		label="cluster_#10"
+	}
+	"#10_Ent" [color=skyblue style=filled]
+	"#10_Ent" -> "#10_in_#10_X" [lhead="cluster_#10"]
+	subgraph "cluster_#20" {
+		node [color=white style=filled]
+		style=filled
+		color=lightgrey
+		node [shape=box]
+		"#20_in_#8_D" [label="#8 D"]
+		node [shape=ellipse]
+		"#20_#8" [label="#8 swap"]
+		"#20_#9" [label="#9 i"]
+		"#20_#19" [label="#19 junction"]
+		node [shape=box]
+		"#20_out_#19_C=>A" [label="#19 C=>A"]
+		"#20_in_#8_D" -> "#20_#8" [label="#8 D"]
+		"#20_#19" -> "#20_out_#19_C=>A" [label="#19 C=>A"]
+		"#20_#8" -> "#20_#9" [label=D]
+		"#20_#8" -> "#20_#9" [label=C]
+		"#20_#8" -> "#20_#19" [label=C]
+		"#20_#9" -> "#20_#19" [label=A]
+		label="cluster_#20"
+	}
+	"#20_Lamb" [color=skyblue style=filled]
+	"#20_Lamb" -> "#20_in_#8_D" [lhead="cluster_#20"]
+	subgraph "cluster_#18" {
+		node [color=white style=filled]
+		style=filled
+		color=lightgrey
+		node [shape=box]
+		"#18_in_#8_C" [label="#8 C"]
+		"#18_in_#8_D" [label="#8 D"]
+		node [shape=ellipse]
+		"#18_#8" [label="#8 swap"]
+		"#18_#9" [label="#9 i"]
+		node [shape=box]
+		"#18_out_#9_A" [label="#9 A"]
+		"#18_in_#8_C" -> "#18_#8" [label="#8 C"]
+		"#18_in_#8_D" -> "#18_#8" [label="#8 D"]
+		"#18_#9" -> "#18_out_#9_A" [label="#9 A"]
+		"#18_#8" -> "#18_#9" [label=D]
+		"#18_#8" -> "#18_#9" [label=C]
+		label="cluster_#18"
+	}
+	"#18_Comp" [color=skyblue style=filled]
+	"#18_Comp" -> "#18_in_#8_D" [lhead="cluster_#18"]
+	subgraph "cluster_#9" {
+		node [color=white style=filled]
+		style=filled
+		color=lightgrey
+		node [shape=box]
+		"#9_in_#9_D" [label="#9 D"]
+		"#9_in_#9_C" [label="#9 C"]
+		node [shape=ellipse]
+		"#9_#9" [label="#9 i"]
+		node [shape=box]
+		"#9_out_#9_A" [label="#9 A"]
+		"#9_in_#9_D" -> "#9_#9" [label="#9 D"]
+		"#9_in_#9_C" -> "#9_#9" [label="#9 C"]
+		"#9_#9" -> "#9_out_#9_A" [label="#9 A"]
+		label="cluster_#9"
+	}
+	"#9_Ent" [color=skyblue style=filled]
+	"#9_Ent" -> "#9_in_#9_C" [lhead="cluster_#9"]
+	subgraph "cluster_#8" {
+		node [color=white style=filled]
+		style=filled
+		color=lightgrey
+		node [shape=box]
+		"#8_in_#8_C" [label="#8 C"]
+		"#8_in_#8_D" [label="#8 D"]
+		node [shape=ellipse]
+		"#8_#8" [label="#8 swap"]
+		node [shape=box]
+		"#8_out_#8_D" [label="#8 D"]
+		"#8_out_#8_C" [label="#8 C"]
+		"#8_in_#8_C" -> "#8_#8" [label="#8 C"]
+		"#8_in_#8_D" -> "#8_#8" [label="#8 D"]
+		"#8_#8" -> "#8_out_#8_D" [label="#8 D"]
+		"#8_#8" -> "#8_out_#8_C" [label="#8 C"]
+		label="cluster_#8"
+	}
+	"#8_Ent" [color=skyblue style=filled]
+	"#8_Ent" -> "#8_in_#8_D" [lhead="cluster_#8"]
+	subgraph "cluster_#17" {
+		node [color=white style=filled]
+		style=filled
+		color=lightgrey
+		node [shape=box]
+		"#17_in_#0_A" [label="#0 A"]
+		"#17_in_#0_B" [label="#0 B"]
+		"#17_in_#3_A" [label="#3 A"]
+		node [shape=ellipse]
+		"#17_#0" [label="#0 f"]
+		"#17_#1" [label="#1 dup"]
+		"#17_#2" [label="#2 g"]
+		"#17_#3" [label="#3 id"]
+		"#17_#4" [label="#4 h"]
+		"#17_#5" [label="#5 swap"]
+		"#17_#6" [label="#6 codup"]
+		"#17_#7" [label="#7 id"]
+		node [shape=box]
+		"#17_out_#6_D" [label="#6 D"]
+		"#17_out_#7_C" [label="#7 C"]
+		"#17_in_#0_A" -> "#17_#0" [label="#0 A"]
+		"#17_in_#0_B" -> "#17_#0" [label="#0 B"]
+		"#17_in_#3_A" -> "#17_#3" [label="#3 A"]
+		"#17_#6" -> "#17_out_#6_D" [label="#6 D"]
+		"#17_#7" -> "#17_out_#7_C" [label="#7 C"]
+		"#17_#0" -> "#17_#1" [label=C]
+		"#17_#1" -> "#17_#2" [label=C]
+		"#17_#1" -> "#17_#2" [label=C]
+		"#17_#3" -> "#17_#4" [label=A]
+		"#17_#4" -> "#17_#5" [label=C]
+		"#17_#4" -> "#17_#5" [label=D]
+		"#17_#2" -> "#17_#6" [label=D]
+		"#17_#5" -> "#17_#6" [label=D]
+		"#17_#5" -> "#17_#7" [label=C]
+		label="cluster_#17"
+	}
+	"#17_Comp" [color=skyblue style=filled]
+	"#17_Comp" -> "#17_in_#3_A" [lhead="cluster_#17"]
+	subgraph "cluster_#16" {
+		node [color=white style=filled]
+		style=filled
+		color=lightgrey
+		node [shape=box]
+		"#16_in_#6_X" [label="#6 X"]
+		"#16_in_#6_X" [label="#6 X"]
+		"#16_in_#7_X" [label="#7 X"]
+		node [shape=ellipse]
+		"#16_#6" [label="#6 codup"]
+		"#16_#7" [label="#7 id"]
+		node [shape=box]
+		"#16_out_#6_X" [label="#6 X"]
+		"#16_out_#7_X" [label="#7 X"]
+		"#16_in_#6_X" -> "#16_#6" [label="#6 X"]
+		"#16_in_#6_X" -> "#16_#6" [label="#6 X"]
+		"#16_in_#7_X" -> "#16_#7" [label="#7 X"]
+		"#16_#6" -> "#16_out_#6_X" [label="#6 X"]
+		"#16_#7" -> "#16_out_#7_X" [label="#7 X"]
+		label="cluster_#16"
+	}
+	"#16_Prod" [color=skyblue style=filled]
+	"#16_Prod" -> "#16_in_#7_X" [lhead="cluster_#16"]
+	subgraph "cluster_#7" {
+		node [color=white style=filled]
+		style=filled
+		color=lightgrey
+		node [shape=box]
+		"#7_in_#7_X" [label="#7 X"]
+		node [shape=ellipse]
+		"#7_#7" [label="#7 id"]
+		node [shape=box]
+		"#7_out_#7_X" [label="#7 X"]
+		"#7_in_#7_X" -> "#7_#7" [label="#7 X"]
+		"#7_#7" -> "#7_out_#7_X" [label="#7 X"]
+		label="cluster_#7"
+	}
+	"#7_Ent" [color=skyblue style=filled]
+	"#7_Ent" -> "#7_in_#7_X" [lhead="cluster_#7"]
+	subgraph "cluster_#6" {
+		node [color=white style=filled]
+		style=filled
+		color=lightgrey
+		node [shape=box]
+		"#6_in_#6_X" [label="#6 X"]
+		"#6_in_#6_X" [label="#6 X"]
+		node [shape=ellipse]
+		"#6_#6" [label="#6 codup"]
+		node [shape=box]
+		"#6_out_#6_X" [label="#6 X"]
+		"#6_in_#6_X" -> "#6_#6" [label="#6 X"]
+		"#6_in_#6_X" -> "#6_#6" [label="#6 X"]
+		"#6_#6" -> "#6_out_#6_X" [label="#6 X"]
+		label="cluster_#6"
+	}
+	"#6_Ent" [color=skyblue style=filled]
+	"#6_Ent" -> "#6_in_#6_X" [lhead="cluster_#6"]
+	subgraph "cluster_#15" {
+		node [color=white style=filled]
+		style=filled
+		color=lightgrey
+		node [shape=box]
+		"#15_in_#0_A" [label="#0 A"]
+		"#15_in_#0_B" [label="#0 B"]
+		"#15_in_#3_A" [label="#3 A"]
+		node [shape=ellipse]
+		"#15_#0" [label="#0 f"]
+		"#15_#1" [label="#1 dup"]
+		"#15_#2" [label="#2 g"]
+		"#15_#3" [label="#3 id"]
+		"#15_#4" [label="#4 h"]
+		"#15_#5" [label="#5 swap"]
+		node [shape=box]
+		"#15_out_#2_D" [label="#2 D"]
+		"#15_out_#5_D" [label="#5 D"]
+		"#15_out_#5_C" [label="#5 C"]
+		"#15_in_#0_A" -> "#15_#0" [label="#0 A"]
+		"#15_in_#0_B" -> "#15_#0" [label="#0 B"]
+		"#15_in_#3_A" -> "#15_#3" [label="#3 A"]
+		"#15_#2" -> "#15_out_#2_D" [label="#2 D"]
+		"#15_#5" -> "#15_out_#5_D" [label="#5 D"]
+		"#15_#5" -> "#15_out_#5_C" [label="#5 C"]
+		"#15_#0" -> "#15_#1" [label=C]
+		"#15_#1" -> "#15_#2" [label=C]
+		"#15_#1" -> "#15_#2" [label=C]
+		"#15_#3" -> "#15_#4" [label=A]
+		"#15_#4" -> "#15_#5" [label=C]
+		"#15_#4" -> "#15_#5" [label=D]
+		label="cluster_#15"
+	}
+	"#15_Prod" [color=skyblue style=filled]
+	"#15_Prod" -> "#15_in_#3_A" [lhead="cluster_#15"]
+	subgraph "cluster_#14" {
+		node [color=white style=filled]
+		style=filled
+		color=lightgrey
+		node [shape=box]
+		"#14_in_#3_A" [label="#3 A"]
+		node [shape=ellipse]
+		"#14_#3" [label="#3 id"]
+		"#14_#4" [label="#4 h"]
+		"#14_#5" [label="#5 swap"]
+		node [shape=box]
+		"#14_out_#5_D" [label="#5 D"]
+		"#14_out_#5_C" [label="#5 C"]
+		"#14_in_#3_A" -> "#14_#3" [label="#3 A"]
+		"#14_#5" -> "#14_out_#5_D" [label="#5 D"]
+		"#14_#5" -> "#14_out_#5_C" [label="#5 C"]
+		"#14_#3" -> "#14_#4" [label=A]
+		"#14_#4" -> "#14_#5" [label=C]
+		"#14_#4" -> "#14_#5" [label=D]
+		label="cluster_#14"
+	}
+	"#14_Comp" [color=skyblue style=filled]
+	"#14_Comp" -> "#14_in_#3_A" [lhead="cluster_#14"]
+	subgraph "cluster_#5" {
+		node [color=white style=filled]
+		style=filled
+		color=lightgrey
+		node [shape=box]
+		"#5_in_#5_X" [label="#5 X"]
+		"#5_in_#5_Y" [label="#5 Y"]
+		node [shape=ellipse]
+		"#5_#5" [label="#5 swap"]
+		node [shape=box]
+		"#5_out_#5_Y" [label="#5 Y"]
+		"#5_out_#5_X" [label="#5 X"]
+		"#5_in_#5_X" -> "#5_#5" [label="#5 X"]
+		"#5_in_#5_Y" -> "#5_#5" [label="#5 Y"]
+		"#5_#5" -> "#5_out_#5_Y" [label="#5 Y"]
+		"#5_#5" -> "#5_out_#5_X" [label="#5 X"]
+		label="cluster_#5"
+	}
+	"#5_Ent" [color=skyblue style=filled]
+	"#5_Ent" -> "#5_in_#5_Y" [lhead="cluster_#5"]
+	subgraph "cluster_#13" {
+		node [color=white style=filled]
+		style=filled
+		color=lightgrey
+		node [shape=box]
+		"#13_in_#3_A" [label="#3 A"]
+		node [shape=ellipse]
+		"#13_#3" [label="#3 id"]
+		"#13_#4" [label="#4 h"]
+		node [shape=box]
+		"#13_out_#4_C" [label="#4 C"]
+		"#13_out_#4_D" [label="#4 D"]
+		"#13_in_#3_A" -> "#13_#3" [label="#3 A"]
+		"#13_#4" -> "#13_out_#4_C" [label="#4 C"]
+		"#13_#4" -> "#13_out_#4_D" [label="#4 D"]
+		"#13_#3" -> "#13_#4" [label=A]
+		label="cluster_#13"
+	}
+	"#13_Comp" [color=skyblue style=filled]
+	"#13_Comp" -> "#13_in_#3_A" [lhead="cluster_#13"]
+	subgraph "cluster_#4" {
+		node [color=white style=filled]
+		style=filled
+		color=lightgrey
+		node [shape=box]
+		"#4_in_#4_A" [label="#4 A"]
+		node [shape=ellipse]
+		"#4_#4" [label="#4 h"]
+		node [shape=box]
+		"#4_out_#4_C" [label="#4 C"]
+		"#4_out_#4_D" [label="#4 D"]
+		"#4_in_#4_A" -> "#4_#4" [label="#4 A"]
+		"#4_#4" -> "#4_out_#4_C" [label="#4 C"]
+		"#4_#4" -> "#4_out_#4_D" [label="#4 D"]
+		label="cluster_#4"
+	}
+	"#4_Ent" [color=skyblue style=filled]
+	"#4_Ent" -> "#4_in_#4_A" [lhead="cluster_#4"]
+	subgraph "cluster_#3" {
+		node [color=white style=filled]
+		style=filled
+		color=lightgrey
+		node [shape=box]
+		"#3_in_#3_A" [label="#3 A"]
+		node [shape=ellipse]
+		"#3_#3" [label="#3 id"]
+		node [shape=box]
+		"#3_out_#3_A" [label="#3 A"]
+		"#3_in_#3_A" -> "#3_#3" [label="#3 A"]
+		"#3_#3" -> "#3_out_#3_A" [label="#3 A"]
+		label="cluster_#3"
+	}
+	"#3_Ent" [color=skyblue style=filled]
+	"#3_Ent" -> "#3_in_#3_A" [lhead="cluster_#3"]
+	subgraph "cluster_#12" {
+		node [color=white style=filled]
+		style=filled
+		color=lightgrey
+		node [shape=box]
+		"#12_in_#0_A" [label="#0 A"]
+		"#12_in_#0_B" [label="#0 B"]
+		node [shape=ellipse]
+		"#12_#0" [label="#0 f"]
+		"#12_#1" [label="#1 dup"]
+		"#12_#2" [label="#2 g"]
+		node [shape=box]
+		"#12_out_#2_D" [label="#2 D"]
+		"#12_in_#0_A" -> "#12_#0" [label="#0 A"]
+		"#12_in_#0_B" -> "#12_#0" [label="#0 B"]
+		"#12_#2" -> "#12_out_#2_D" [label="#2 D"]
+		"#12_#0" -> "#12_#1" [label=C]
+		"#12_#1" -> "#12_#2" [label=C]
+		"#12_#1" -> "#12_#2" [label=C]
+		label="cluster_#12"
+	}
+	"#12_Comp" [color=skyblue style=filled]
+	"#12_Comp" -> "#12_in_#0_B" [lhead="cluster_#12"]
+	subgraph "cluster_#2" {
+		node [color=white style=filled]
+		style=filled
+		color=lightgrey
+		node [shape=box]
+		"#2_in_#2_C" [label="#2 C"]
+		"#2_in_#2_C" [label="#2 C"]
+		node [shape=ellipse]
+		"#2_#2" [label="#2 g"]
+		node [shape=box]
+		"#2_out_#2_D" [label="#2 D"]
+		"#2_in_#2_C" -> "#2_#2" [label="#2 C"]
+		"#2_in_#2_C" -> "#2_#2" [label="#2 C"]
+		"#2_#2" -> "#2_out_#2_D" [label="#2 D"]
+		label="cluster_#2"
+	}
+	"#2_Ent" [color=skyblue style=filled]
+	"#2_Ent" -> "#2_in_#2_C" [lhead="cluster_#2"]
+	subgraph "cluster_#11" {
+		node [color=white style=filled]
+		style=filled
+		color=lightgrey
+		node [shape=box]
+		"#11_in_#0_A" [label="#0 A"]
+		"#11_in_#0_B" [label="#0 B"]
+		node [shape=ellipse]
+		"#11_#0" [label="#0 f"]
+		"#11_#1" [label="#1 dup"]
+		node [shape=box]
+		"#11_out_#1_C" [label="#1 C"]
+		"#11_out_#1_C" [label="#1 C"]
+		"#11_in_#0_A" -> "#11_#0" [label="#0 A"]
+		"#11_in_#0_B" -> "#11_#0" [label="#0 B"]
+		"#11_#1" -> "#11_out_#1_C" [label="#1 C"]
+		"#11_#1" -> "#11_out_#1_C" [label="#1 C"]
+		"#11_#0" -> "#11_#1" [label=C]
+		label="cluster_#11"
+	}
+	"#11_Comp" [color=skyblue style=filled]
+	"#11_Comp" -> "#11_in_#0_B" [lhead="cluster_#11"]
+	subgraph "cluster_#1" {
+		node [color=white style=filled]
+		style=filled
+		color=lightgrey
+		node [shape=box]
+		"#1_in_#1_X" [label="#1 X"]
+		node [shape=ellipse]
+		"#1_#1" [label="#1 dup"]
+		node [shape=box]
+		"#1_out_#1_X" [label="#1 X"]
+		"#1_out_#1_X" [label="#1 X"]
+		"#1_in_#1_X" -> "#1_#1" [label="#1 X"]
+		"#1_#1" -> "#1_out_#1_X" [label="#1 X"]
+		"#1_#1" -> "#1_out_#1_X" [label="#1 X"]
+		label="cluster_#1"
+	}
+	"#1_Ent" [color=skyblue style=filled]
+	"#1_Ent" -> "#1_in_#1_X" [lhead="cluster_#1"]
+	subgraph "cluster_#0" {
+		node [color=white style=filled]
+		style=filled
+		color=lightgrey
+		node [shape=box]
+		"#0_in_#0_A" [label="#0 A"]
+		"#0_in_#0_B" [label="#0 B"]
+		node [shape=ellipse]
+		"#0_#0" [label="#0 f"]
+		node [shape=box]
+		"#0_out_#0_C" [label="#0 C"]
+		"#0_in_#0_A" -> "#0_#0" [label="#0 A"]
+		"#0_in_#0_B" -> "#0_#0" [label="#0 B"]
+		"#0_#0" -> "#0_out_#0_C" [label="#0 C"]
+		label="cluster_#0"
+	}
+	"#0_Ent" [color=skyblue style=filled]
+	"#0_Ent" -> "#0_in_#0_B" [lhead="cluster_#0"]
+	"#0_out_#0_C" -> "#11_Comp" [ltail="cluster_#0"]
+	"#1_out_#1_X" -> "#11_Comp" [ltail="cluster_#1"]
+	"#11_out_#1_C" -> "#12_Comp" [ltail="cluster_#11"]
+	"#2_out_#2_D" -> "#12_Comp" [ltail="cluster_#2"]
+	"#3_out_#3_A" -> "#13_Comp" [ltail="cluster_#3"]
+	"#4_out_#4_D" -> "#13_Comp" [ltail="cluster_#4"]
+	"#13_out_#4_D" -> "#14_Comp" [ltail="cluster_#13"]
+	"#5_out_#5_X" -> "#14_Comp" [ltail="cluster_#5"]
+	"#12_out_#2_D" -> "#15_Prod" [ltail="cluster_#12"]
+	"#14_out_#5_C" -> "#15_Prod" [ltail="cluster_#14"]
+	"#6_out_#6_X" -> "#16_Prod" [ltail="cluster_#6"]
+	"#7_out_#7_X" -> "#16_Prod" [ltail="cluster_#7"]
+	"#15_out_#5_C" -> "#17_Comp" [ltail="cluster_#15"]
+	"#16_out_#7_X" -> "#17_Comp" [ltail="cluster_#16"]
+	"#8_out_#8_C" -> "#18_Comp" [ltail="cluster_#8"]
+	"#9_out_#9_A" -> "#18_Comp" [ltail="cluster_#9"]
+	"#18_out_#9_A" -> "#20_Lamb" [ltail="cluster_#18"]
+	"#20_out_#19_C=>A" -> "#21_Comp" [ltail="cluster_#20"]
+	"#10_out_#10_X" -> "#21_Comp" [ltail="cluster_#10"]
+	"#17_out_#7_C" -> "#22_Prod" [ltail="cluster_#17"]
+	"#21_out_#10_C=>A" -> "#22_Prod" [ltail="cluster_#21"]
+}
