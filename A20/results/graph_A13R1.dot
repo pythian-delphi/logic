@@ -1,0 +1,184 @@
+digraph G {
+	compound=true
+	subgraph "cluster_#9" {
+		node [color=white style=filled]
+		style=filled
+		color=lightgrey
+		node [shape=box]
+		"#9_in_#0_T" [label="#0 T"]
+		node [shape=ellipse]
+		"#9_#0" [label="#0 sigma"]
+		"#9_#1" [label="#1 gamma"]
+		"#9_#2" [label="#2 f"]
+		"#9_#5" [label="#5 junction"]
+		"#9_#8" [label="#8 junction"]
+		node [shape=box]
+		"#9_out_#8_A=>B=>C" [label="#8 A=>B=>C"]
+		"#9_in_#0_T" -> "#9_#0" [label="#0 T"]
+		"#9_#8" -> "#9_out_#8_A=>B=>C" [label="#8 A=>B=>C"]
+		"#9_#1" -> "#9_#2" [label="A^B"]
+		"#9_#0" -> "#9_#1" [label=A]
+		"#9_#0" -> "#9_#1" [label=B]
+		"#9_#0" -> "#9_#5" [label=B]
+		"#9_#2" -> "#9_#5" [label=C]
+		"#9_#0" -> "#9_#8" [label=A]
+		"#9_#5" -> "#9_#8" [label="B=>C"]
+		label="cluster_#9"
+	}
+	"#9_Lamb" [color=skyblue style=filled]
+	"#9_Lamb" -> "#9_in_#0_T" [lhead="cluster_#9"]
+	subgraph "cluster_#7" {
+		node [color=white style=filled]
+		style=filled
+		color=lightgrey
+		node [shape=box]
+		"#7_in_#0_A" [label="#0 A"]
+		"#7_in_#0_T" [label="#0 T"]
+		node [shape=ellipse]
+		"#7_#0" [label="#0 sigma"]
+		"#7_#1" [label="#1 gamma"]
+		"#7_#2" [label="#2 f"]
+		"#7_#5" [label="#5 junction"]
+		node [shape=box]
+		"#7_out_#5_B=>C" [label="#5 B=>C"]
+		"#7_in_#0_A" -> "#7_#0" [label="#0 A"]
+		"#7_in_#0_T" -> "#7_#0" [label="#0 T"]
+		"#7_#5" -> "#7_out_#5_B=>C" [label="#5 B=>C"]
+		"#7_#1" -> "#7_#2" [label="A^B"]
+		"#7_#0" -> "#7_#1" [label=A]
+		"#7_#0" -> "#7_#1" [label=B]
+		"#7_#0" -> "#7_#5" [label=B]
+		"#7_#2" -> "#7_#5" [label=C]
+		label="cluster_#7"
+	}
+	"#7_Up" [color=skyblue style=filled]
+	"#7_Up" -> "#7_in_#0_T" [lhead="cluster_#7"]
+	subgraph "cluster_#6" {
+		node [color=white style=filled]
+		style=filled
+		color=lightgrey
+		node [shape=box]
+		"#6_in_#0_A" [label="#0 A"]
+		node [shape=ellipse]
+		"#6_#0" [label="#0 sigma"]
+		"#6_#1" [label="#1 gamma"]
+		"#6_#2" [label="#2 f"]
+		"#6_#5" [label="#5 junction"]
+		node [shape=box]
+		"#6_out_#5_B=>C" [label="#5 B=>C"]
+		"#6_in_#0_A" -> "#6_#0" [label="#0 A"]
+		"#6_#5" -> "#6_out_#5_B=>C" [label="#5 B=>C"]
+		"#6_#1" -> "#6_#2" [label="A^B"]
+		"#6_#0" -> "#6_#1" [label=A]
+		"#6_#0" -> "#6_#1" [label=B]
+		"#6_#0" -> "#6_#5" [label=B]
+		"#6_#2" -> "#6_#5" [label=C]
+		label="cluster_#6"
+	}
+	"#6_Lamb" [color=skyblue style=filled]
+	"#6_Lamb" -> "#6_in_#0_A" [lhead="cluster_#6"]
+	subgraph "cluster_#4" {
+		node [color=white style=filled]
+		style=filled
+		color=lightgrey
+		node [shape=box]
+		"#4_in_#0_B" [label="#0 B"]
+		"#4_in_#0_A" [label="#0 A"]
+		node [shape=ellipse]
+		"#4_#0" [label="#0 sigma"]
+		"#4_#1" [label="#1 gamma"]
+		"#4_#2" [label="#2 f"]
+		node [shape=box]
+		"#4_out_#2_C" [label="#2 C"]
+		"#4_in_#0_B" -> "#4_#0" [label="#0 B"]
+		"#4_in_#0_A" -> "#4_#0" [label="#0 A"]
+		"#4_#2" -> "#4_out_#2_C" [label="#2 C"]
+		"#4_#1" -> "#4_#2" [label="A^B"]
+		"#4_#0" -> "#4_#1" [label=A]
+		"#4_#0" -> "#4_#1" [label=B]
+		label="cluster_#4"
+	}
+	"#4_Comp" [color=skyblue style=filled]
+	"#4_Comp" -> "#4_in_#0_A" [lhead="cluster_#4"]
+	subgraph "cluster_#3" {
+		node [color=white style=filled]
+		style=filled
+		color=lightgrey
+		node [shape=box]
+		"#3_in_#1_A" [label="#1 A"]
+		"#3_in_#1_B" [label="#1 B"]
+		node [shape=ellipse]
+		"#3_#1" [label="#1 gamma"]
+		"#3_#2" [label="#2 f"]
+		node [shape=box]
+		"#3_out_#2_C" [label="#2 C"]
+		"#3_in_#1_A" -> "#3_#1" [label="#1 A"]
+		"#3_in_#1_B" -> "#3_#1" [label="#1 B"]
+		"#3_#2" -> "#3_out_#2_C" [label="#2 C"]
+		"#3_#1" -> "#3_#2" [label="A^B"]
+		label="cluster_#3"
+	}
+	"#3_Comp" [color=skyblue style=filled]
+	"#3_Comp" -> "#3_in_#1_B" [lhead="cluster_#3"]
+	subgraph "cluster_#2" {
+		node [color=white style=filled]
+		style=filled
+		color=lightgrey
+		node [shape=box]
+		"#2_in_#2_A^B" [label="#2 A^B"]
+		node [shape=ellipse]
+		"#2_#2" [label="#2 f"]
+		node [shape=box]
+		"#2_out_#2_C" [label="#2 C"]
+		"#2_in_#2_A^B" -> "#2_#2" [label="#2 A^B"]
+		"#2_#2" -> "#2_out_#2_C" [label="#2 C"]
+		label="cluster_#2"
+	}
+	"#2_Ent" [color=skyblue style=filled]
+	"#2_Ent" -> "#2_in_#2_A^B" [lhead="cluster_#2"]
+	subgraph "cluster_#1" {
+		node [color=white style=filled]
+		style=filled
+		color=lightgrey
+		node [shape=box]
+		"#1_in_#1_A" [label="#1 A"]
+		"#1_in_#1_B" [label="#1 B"]
+		node [shape=ellipse]
+		"#1_#1" [label="#1 gamma"]
+		node [shape=box]
+		"#1_out_#1_A^B" [label="#1 A^B"]
+		"#1_in_#1_A" -> "#1_#1" [label="#1 A"]
+		"#1_in_#1_B" -> "#1_#1" [label="#1 B"]
+		"#1_#1" -> "#1_out_#1_A^B" [label="#1 A^B"]
+		label="cluster_#1"
+	}
+	"#1_Ent" [color=skyblue style=filled]
+	"#1_Ent" -> "#1_in_#1_B" [lhead="cluster_#1"]
+	subgraph "cluster_#0" {
+		node [color=white style=filled]
+		style=filled
+		color=lightgrey
+		node [shape=box]
+		"#0_in_#0_B" [label="#0 B"]
+		"#0_in_#0_A" [label="#0 A"]
+		node [shape=ellipse]
+		"#0_#0" [label="#0 sigma"]
+		node [shape=box]
+		"#0_out_#0_A" [label="#0 A"]
+		"#0_out_#0_B" [label="#0 B"]
+		"#0_in_#0_B" -> "#0_#0" [label="#0 B"]
+		"#0_in_#0_A" -> "#0_#0" [label="#0 A"]
+		"#0_#0" -> "#0_out_#0_A" [label="#0 A"]
+		"#0_#0" -> "#0_out_#0_B" [label="#0 B"]
+		label="cluster_#0"
+	}
+	"#0_Ent" [color=skyblue style=filled]
+	"#0_Ent" -> "#0_in_#0_A" [lhead="cluster_#0"]
+	"#1_out_#1_A^B" -> "#3_Comp" [ltail="cluster_#1"]
+	"#2_out_#2_C" -> "#3_Comp" [ltail="cluster_#2"]
+	"#0_out_#0_B" -> "#4_Comp" [ltail="cluster_#0"]
+	"#3_out_#2_C" -> "#4_Comp" [ltail="cluster_#3"]
+	"#4_out_#2_C" -> "#6_Lamb" [ltail="cluster_#4"]
+	"#6_out_#5_B=>C" -> "#7_Up" [ltail="cluster_#6"]
+	"#7_out_#5_B=>C" -> "#9_Lamb" [ltail="cluster_#7"]
+}
