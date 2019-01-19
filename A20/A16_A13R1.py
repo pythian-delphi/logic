@@ -116,7 +116,7 @@ class LogicCanvas:
     def get_block(self, block_id):
         return self.block_dict[block_id]
 
-    def Prob(self, block_id_1, block_id_2):
+    def Prod(self, block_id_1, block_id_2):
         ret = 0
         block_1 = self.block_dict[block_id_1].DeepCopy()
         block_2 = self.block_dict[block_id_2].DeepCopy()
@@ -130,7 +130,7 @@ class LogicCanvas:
         edge_list = block_1.edge_list + block_2.edge_list
         )
         self.block_dict[new_id_name] = new_block
-        self.history_dict[new_id_name] = ("Prob",[block_id_1, block_id_2])
+        self.history_dict[new_id_name] = ("Prod",[block_id_1, block_id_2])
         return ret, new_id_name
 
     def Comp(self, block_id_1, block_id_2):

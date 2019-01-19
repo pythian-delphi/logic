@@ -130,7 +130,7 @@ class LogicCanvas:
     def get_block(self, block_id):
         return self.block_dict[block_id]
 
-    def Prob(self, block_id_1, block_id_2):
+    def Prod(self, block_id_1, block_id_2):
         ret = 0
         block_1 = self.block_dict[block_id_1].DeepCopy()
         block_2 = self.block_dict[block_id_2].DeepCopy()
@@ -144,7 +144,7 @@ class LogicCanvas:
         edge_list = block_1.edge_list + block_2.edge_list
         )
         self.block_dict[new_id_name] = new_block
-        self.history_dict[new_id_name] = ("Prob",[block_id_1, block_id_2])
+        self.history_dict[new_id_name] = ("Prod",[block_id_1, block_id_2])
         return ret, new_id_name
 
     def Comp(self, block_id_1, block_id_2):
@@ -276,18 +276,18 @@ def main():
     id_8_a = canvas.Ent("a")
     id_9_id = canvas.Ent("id")
 
-    ret, id_10_prob = canvas.Prob(id_1_b, id_2_b)
+    ret, id_10_prod = canvas.Prod(id_1_b, id_2_b)
 
-    ret, id_11_prob = canvas.Prob(id_3_id, id_4_a)
-    ret, id_12_prob = canvas.Prob(id_11_prob, id_5_id)
+    ret, id_11_prod = canvas.Prod(id_3_id, id_4_a)
+    ret, id_12_prod = canvas.Prod(id_11_prod, id_5_id)
 
-    ret, id_13_prob = canvas.Prob(id_6_swap, id_7_id)
+    ret, id_13_prod = canvas.Prod(id_6_swap, id_7_id)
 
-    ret, id_14_prob = canvas.Prob(id_8_a, id_9_id)
+    ret, id_14_prod = canvas.Prod(id_8_a, id_9_id)
 
-    ret, id_15_comp = canvas.Comp(id_10_prob, id_12_prob)
-    ret, id_16_comp = canvas.Comp(id_15_comp, id_13_prob)
-    ret, id_17_comp = canvas.Comp(id_16_comp, id_14_prob)
+    ret, id_15_comp = canvas.Comp(id_10_prod, id_12_prod)
+    ret, id_16_comp = canvas.Comp(id_15_comp, id_13_prod)
+    ret, id_17_comp = canvas.Comp(id_16_comp, id_14_prod)
 
     print("dump")
     canvas.get_block(id_17_comp).dump()
