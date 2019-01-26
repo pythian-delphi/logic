@@ -1,5 +1,6 @@
 # logic
 ## 不完全性定理の風景～”論理”とは何かを再考する～
+http://romanticmathnight.org/658
 
 ### RSS練習問題  
 https://m-hiyama-memo.hatenablog.jp/archive/category/RSS練習問題 
