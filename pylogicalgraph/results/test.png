@@ -1,0 +1,143 @@
+digraph G {
+	subgraph "cluster_#21_#21" {
+		style=filled
+		color=snow
+		node [shape=box]
+		"#21_in_#0_0_0_A"
+		"#21_in_#0_0_1_B"
+		"#21_in_#3_0_0_A"
+		"#21_in_#8_0_0_C"
+		"#21_in_#8_0_1_D"
+		subgraph "cluster_#21_#17" {
+			style=filled
+			color=cornflowerblue
+			subgraph "cluster_#21_#15" {
+				style=filled
+				color=pink
+				subgraph "cluster_#21_#12" {
+					style=filled
+					color=cornflowerblue
+					subgraph "cluster_#21_#11" {
+						style=filled
+						color=cornflowerblue
+						subgraph "cluster_#21_#0" {
+							style=filled
+							color=white
+							node [shape=ellipse]
+							"#21_#0_0_f"
+						}
+						subgraph "cluster_#21_#1" {
+							style=filled
+							color=white
+							node [shape=ellipse]
+							"#21_#1_0_dup"
+						}
+					}
+					"#21_#0_0_f" -> "#21_#1_0_dup"
+					subgraph "cluster_#21_#2" {
+						style=filled
+						color=white
+						node [shape=ellipse]
+						"#21_#2_0_g"
+					}
+				}
+				"#21_#1_0_dup" -> "#21_#2_0_g"
+				"#21_#1_0_dup" -> "#21_#2_0_g"
+				subgraph "cluster_#21_#14" {
+					style=filled
+					color=cornflowerblue
+					subgraph "cluster_#21_#13" {
+						style=filled
+						color=cornflowerblue
+						subgraph "cluster_#21_#3" {
+							style=filled
+							color=white
+							node [shape=ellipse]
+							"#21_#3_0_id"
+						}
+						subgraph "cluster_#21_#4" {
+							style=filled
+							color=white
+							node [shape=ellipse]
+							"#21_#4_0_h"
+						}
+					}
+					"#21_#3_0_id" -> "#21_#4_0_h"
+					subgraph "cluster_#21_#5" {
+						style=filled
+						color=white
+						node [shape=ellipse]
+						"#21_#5_0_swap"
+					}
+				}
+				"#21_#4_0_h" -> "#21_#5_0_swap"
+				"#21_#4_0_h" -> "#21_#5_0_swap"
+			}
+			subgraph "cluster_#21_#16" {
+				style=filled
+				color=pink
+				subgraph "cluster_#21_#6" {
+					style=filled
+					color=white
+					node [shape=ellipse]
+					"#21_#6_0_codup"
+				}
+				subgraph "cluster_#21_#7" {
+					style=filled
+					color=white
+					node [shape=ellipse]
+					"#21_#7_0_id"
+				}
+			}
+		}
+		"#21_#2_0_g" -> "#21_#6_0_codup"
+		"#21_#5_0_swap" -> "#21_#6_0_codup"
+		"#21_#5_0_swap" -> "#21_#7_0_id"
+		subgraph "cluster_#21_#20" {
+			style=filled
+			color=cornflowerblue
+			subgraph "cluster_#21_#19" {
+				style=filled
+				color=white
+				subgraph "cluster_#21_#18" {
+					style=filled
+					color=cornflowerblue
+					subgraph "cluster_#21_#8" {
+						style=filled
+						color=white
+						node [shape=ellipse]
+						"#21_#8_0_swap"
+					}
+					subgraph "cluster_#21_#9" {
+						style=filled
+						color=white
+						node [shape=ellipse]
+						"#21_#9_0_i"
+					}
+				}
+				"#21_#8_0_swap" -> "#21_#9_0_i"
+				"#21_#8_0_swap" -> "#21_#9_0_i"
+			}
+			"#21_in_#8_0_0_C" -> "#21_out_#9_0_0_A" [dir=back]
+			subgraph "cluster_#21_#10" {
+				style=filled
+				color=white
+				node [shape=ellipse]
+				"#21_#10_0_id"
+			}
+		}
+		"#21_#9_0_i" -> "#21_#10_0_id"
+		node [shape=box]
+		"#21_out_#6_0_0_D"
+		"#21_out_#7_0_0_C"
+		"#21_out_#10_0_0_A"
+		"#21_in_#0_0_0_A" -> "#21_#0_0_f"
+		"#21_in_#0_0_1_B" -> "#21_#0_0_f"
+		"#21_in_#3_0_0_A" -> "#21_#3_0_id"
+		"#21_in_#8_0_0_C" -> "#21_#8_0_swap"
+		"#21_in_#8_0_1_D" -> "#21_#8_0_swap"
+		"#21_#6_0_codup" -> "#21_out_#6_0_0_D"
+		"#21_#7_0_id" -> "#21_out_#7_0_0_C"
+		"#21_#10_0_id" -> "#21_out_#10_0_0_A"
+	}
+}

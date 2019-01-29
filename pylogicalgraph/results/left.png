@@ -1,0 +1,99 @@
+digraph G {
+	subgraph "cluster_#17_#17" {
+		style=filled
+		color=cornflowerblue
+		node [shape=box]
+		"#17_in_#0_0_0_A"
+		"#17_in_#0_0_1_B"
+		"#17_in_#3_0_0_A"
+		subgraph "cluster_#17_#15" {
+			style=filled
+			color=pink
+			subgraph "cluster_#17_#12" {
+				style=filled
+				color=cornflowerblue
+				subgraph "cluster_#17_#11" {
+					style=filled
+					color=cornflowerblue
+					subgraph "cluster_#17_#0" {
+						style=filled
+						color=white
+						node [shape=ellipse]
+						"#17_#0_0_f"
+					}
+					subgraph "cluster_#17_#1" {
+						style=filled
+						color=white
+						node [shape=ellipse]
+						"#17_#1_0_dup"
+					}
+				}
+				"#17_#0_0_f" -> "#17_#1_0_dup"
+				subgraph "cluster_#17_#2" {
+					style=filled
+					color=white
+					node [shape=ellipse]
+					"#17_#2_0_g"
+				}
+			}
+			"#17_#1_0_dup" -> "#17_#2_0_g"
+			"#17_#1_0_dup" -> "#17_#2_0_g"
+			subgraph "cluster_#17_#14" {
+				style=filled
+				color=cornflowerblue
+				subgraph "cluster_#17_#13" {
+					style=filled
+					color=cornflowerblue
+					subgraph "cluster_#17_#3" {
+						style=filled
+						color=white
+						node [shape=ellipse]
+						"#17_#3_0_id"
+					}
+					subgraph "cluster_#17_#4" {
+						style=filled
+						color=white
+						node [shape=ellipse]
+						"#17_#4_0_h"
+					}
+				}
+				"#17_#3_0_id" -> "#17_#4_0_h"
+				subgraph "cluster_#17_#5" {
+					style=filled
+					color=white
+					node [shape=ellipse]
+					"#17_#5_0_swap"
+				}
+			}
+			"#17_#4_0_h" -> "#17_#5_0_swap"
+			"#17_#4_0_h" -> "#17_#5_0_swap"
+		}
+		subgraph "cluster_#17_#16" {
+			style=filled
+			color=pink
+			subgraph "cluster_#17_#6" {
+				style=filled
+				color=white
+				node [shape=ellipse]
+				"#17_#6_0_codup"
+			}
+			subgraph "cluster_#17_#7" {
+				style=filled
+				color=white
+				node [shape=ellipse]
+				"#17_#7_0_id"
+			}
+		}
+		node [shape=box]
+		"#17_out_#6_0_0_D"
+		"#17_out_#7_0_0_C"
+		"#17_in_#0_0_0_A" -> "#17_#0_0_f"
+		"#17_in_#0_0_1_B" -> "#17_#0_0_f"
+		"#17_in_#3_0_0_A" -> "#17_#3_0_id"
+		"#17_#6_0_codup" -> "#17_out_#6_0_0_D"
+		"#17_#7_0_id" -> "#17_out_#7_0_0_C"
+		"#17_#2_0_g" -> "#17_#6_0_codup"
+		"#17_#5_0_swap" -> "#17_#6_0_codup"
+		"#17_#5_0_swap" -> "#17_#7_0_id"
+	}
+}
