@@ -4,7 +4,7 @@ from .graphviz import GraphvizCreator
 class GraphCreator:
     def __init__(self, format='png', params={}):
         self.params = params
-        self.module = GraphvizCreator(format='png')
+        self.module = GraphvizCreator(format=format)
 
     def write(self, filename):
         self.module.write(filename)

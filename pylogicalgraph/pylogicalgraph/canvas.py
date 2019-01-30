@@ -85,8 +85,8 @@ class LogicalGraphCanvas:
         self.history_dict[id_name] = ("Up",[lbox_id_1])
         return ret,id_name
 
-    def draw_box(self, lbox_id, filename):
-        creator = GraphCreator()
+    def draw_box(self, lbox_id, filename, format='png'):
+        creator = GraphCreator(format=format)
         graph = creator.graph()
         # self.lbox_dict[lbox_id].draw(creator, graph, prefix=lbox_id)
         self.lbox_dict[lbox_id].draw_graph(creator, graph, prefix=lbox_id)

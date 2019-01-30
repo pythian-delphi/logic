@@ -40,27 +40,27 @@ def main():
 
     ret, id_18_comp = canvas.Comp(id_16_prod, id_17_prod)
 
-    graph_path = os.path.join(outputs_dir, "left.png")
+    graph_path = os.path.join(outputs_dir, "left")
     canvas.draw_box(id_18_comp, graph_path)
-    # exit(-1)
+    canvas.draw_box(id_18_comp, graph_path, format='svg')
 
 
     # Right
     ret, id_19_comp = canvas.Comp(id_09_swap, id_10_i)
-    ret, id_20_lamb = canvas.Lamb(id_19_comp, "#8_0_0", "#9_0_0")
-    ret, id_21_comp = canvas.Comp(id_20_lamb, id_11_id)
+    ret, id_20_comp = canvas.Comp(id_19_comp, id_11_id)
+    ret, id_21_lamb = canvas.Lamb(id_20_comp, "#8_0_0", "#10_0_0")
 
-    graph_path = os.path.join(outputs_dir, "right.png")
-    canvas.draw_box(id_21_comp, graph_path)
-
+    graph_path = os.path.join(outputs_dir, "right")
+    canvas.draw_box(id_21_lamb, graph_path)
+    canvas.draw_box(id_21_lamb, graph_path, format='svg')
 
     # Merge
-    ret, id_22_sum = canvas.Sum(id_18_comp, id_21_comp)
-    # canvas.get_logic_box(id_22_sum).dump()
+    ret, id_22_sum = canvas.Sum(id_18_comp, id_21_lamb)
     canvas.get_logic_box(id_22_sum).dump()
 
-    graph_path = os.path.join(outputs_dir, "test.png")
+    graph_path = os.path.join(outputs_dir, "A22P11")
     canvas.draw_box(id_22_sum, graph_path)
+    canvas.draw_box(id_22_sum, graph_path, format='svg')
 
 if __name__ == '__main__':
     main()

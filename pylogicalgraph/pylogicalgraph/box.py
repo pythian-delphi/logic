@@ -54,6 +54,56 @@ class LogicalGraphBox:
     @property
     def up_list(self):
         return self._up_list
+    @property
+    def rank(self):
+        rank = -1
+        if self._box_type == LogicOperation.Ent:
+            rank = 0
+        elif self._box_type == LogicOperation.Sum:
+            rank = max(self._box_list[0].rank, self._box_list[1].rank) + 1
+        elif self._box_type == LogicOperation.Prod:
+            rank = max(self._box_list[0].rank, self._box_list[1].rank) + 1
+        elif self._box_type == LogicOperation.Comp:
+            rank = max(self._box_list[0].rank, self._box_list[1].rank) + 1
+        elif self._box_type == LogicOperation.Lambda:
+            rank = self._box_list[0].rank + 1
+        elif self._box_type == LogicOperation.Up:
+            rank = self._box_list[0].rank + 1
+        else:
+            rank = -1
+        return rank
+    @property
+    def shape(self):
+        columns = 0
+        rows = 0
+        if self._box_type == LogicOperation.Ent:
+            columns = 1
+            rows = 1
+        elif self._box_type == LogicOperation.Sum:
+            columns = self._box_list[0].columns + self._box_list[1].columns
+            rows = max(self._box_list[0].rows, self._box_list[1].rows)
+        elif self._box_type == LogicOperation.Prod:
+            columns = self._box_list[0].columns + self._box_list[1].columns
+            rows = max(self._box_list[0].rows, self._box_list[1].rows)
+        elif self._box_type == LogicOperation.Comp:
+            columns = max(self._box_list[0].columns, self._box_list[1].columns)
+            rows = self._box_list[0].rows + self._box_list[1].rows
+        elif self._box_type == LogicOperation.Lambda:
+            columns = self._box_list[0].columns
+            rows = self._box_list[0].rows
+        elif self._box_type == LogicOperation.Up:
+            columns = self._box_list[0].columns
+            rows = self._box_list[0].rows
+        else:
+            columns = 0
+            rows = 0
+        return (columns, rows)
+    @property
+    def columns(self):
+        return self.shape[0]
+    @property
+    def rows(self):
+        return self.shape[1]
 
     def get_box_color(self):
         ret_color = "white"
@@ -63,7 +113,9 @@ class LogicalGraphBox:
             # ret_color = "antiquewhite"
             # ret_color = "lightgray"
             # ret_color = "ghostwhite"
-            ret_color = "snow"
+            # ret_color = "snow"
+            # ret_color = "green"
+            ret_color = "darkgreen"
         elif self.box_type == LogicOperation.Prod:
             ret_color = "pink"
             # ret_color = "salmon"
@@ -86,6 +138,9 @@ class LogicalGraphBox:
         print("box {0} edge   = {1}".format(self._id_name, self.edge_list))
         print("box {0} lambda = {1}".format(self._id_name, self.lambda_list))
         print("box {0} up     = {1}".format(self._id_name, self._up_list))
+        print("box {0} rank    = {1}".format(self._id_name, self.rank))
+        print("box {0} columns = {1}".format(self._id_name, self.columns))
+        print("box {0} rows    = {1}".format(self._id_name, self.rows))
 
     def DeepCopy(self):
         new_lbox = LogicalGraphBox(self._id_name,
@@ -130,7 +185,10 @@ class LogicalGraphBox:
                                box_type=LogicOperation.Sum,
                                box_list=[lbox_1, lbox_2],
                                in_list=(lbox_1.in_list + lbox_2.in_list),
-                               out_list=(lbox_1.out_list + lbox_2.out_list))
+                               out_list=(lbox_1.out_list + lbox_2.out_list),
+                               edge_list=(lbox_1.edge_list + lbox_2.edge_list),
+                               lambda_list=(lbox_1.lambda_list + lbox_2.lambda_list),
+                               up_list=(lbox_1.up_list + lbox_2.up_list))
         return ret, lbox
 
     @classmethod
@@ -140,20 +198,27 @@ class LogicalGraphBox:
                                box_type=LogicOperation.Prod,
                                box_list=[lbox_1, lbox_2],
                                in_list=(lbox_1.in_list + lbox_2.in_list),
-                               out_list=(lbox_1.out_list + lbox_2.out_list))
+                               out_list=(lbox_1.out_list + lbox_2.out_list),
+                               edge_list=(lbox_1.edge_list + lbox_2.edge_list),
+                               lambda_list=(lbox_1.lambda_list + lbox_2.lambda_list),
+                               up_list=(lbox_1.up_list + lbox_2.up_list))
         return ret, lbox
 
     @classmethod
     def Comp(cls, box_id, lbox_1, lbox_2):
         ret = 0
-        new_edge_list = []
+        print("out_list = {}".format(lbox_2.out_list))
+        new_edge_list = lbox_1.edge_list + lbox_2.edge_list
         ret = LogicalGraphBox.Comp_box(lbox_1, lbox_2, new_edge_list)
         lbox = LogicalGraphBox(box_id,
                                box_type=LogicOperation.Comp,
                                box_list=[lbox_1, lbox_2],
                                in_list=lbox_1.in_list,
                                out_list=lbox_2.out_list,
-                               edge_list=new_edge_list)
+                               edge_list=new_edge_list,
+                               lambda_list=(lbox_1.lambda_list + lbox_2.lambda_list),
+                               up_list=(lbox_1.up_list + lbox_2.up_list))
+        print("out_list = {}".format(lbox_2.out_list))
         return ret, lbox
 
     @classmethod
@@ -204,74 +269,36 @@ class LogicalGraphBox:
             ret = -1
             return ret, LogicalGraphBox(box_id)
 
-        lambda_list = [(in_plug_list[0], out_plug_list[0])]
+        lambda_list = target_lbox.lambda_list
+        lambda_list.append((in_plug_list[0], out_plug_list[0]))
         print("lambda_list = {}".format(lambda_list))
 
-        # lbox = LogicalGraphBox(box_id,
-        #                        box_type=LogicOperation.Lambda,
-        #                        box_list=[],
-        #                        lambda_list=lambda_list)
         lbox = LogicalGraphBox(box_id,
                                box_type=LogicOperation.Lambda,
                                box_list=[target_lbox],
                                in_list=target_lbox.in_list,
                                out_list=target_lbox.out_list,
-                               lambda_list=lambda_list)
-
+                               edge_list=target_lbox.edge_list,
+                               lambda_list=lambda_list,
+                               up_list=target_lbox.up_list)
         return ret, lbox
 
     @classmethod
     def Up(cls, id_name, target_lbox, in_plug):
         ret = 0
-        up_list = [LogicPlug(node_id=in_plug[0], name=in_plug[1])]
+        up_list = target_lbox.up_list
+        up_list.append(LogicPlug(node_id=in_plug[0], name=in_plug[1]))
         lbox = LogicalGraphBox(box_id,
                                box_type=LogicOperation.Up,
                                box_list=[lbox_1, lbox_2],
+                               in_list=target_lbox.in_list,
+                               out_list=target_lbox.out_list,
+                               edge_list=target_lbox.edge_list,
+                               lambda_list=target_lbox.lambda_list,
                                up_list=up_list)
         return ret, lbox
 
-    # def draw_graph(self, creator, graph, prefix=''):
-    #     inputs = self.in_list
-    #     outputs = self.out_list
-    #     print("in_list type  = {}".format(type(inputs)))
-    #     print("out_list type = {}".format(type(outputs)))
-    #     print("in_list  = {}".format(inputs))
-    #     print("out_list = {}".format(outputs))
-    #
-    #     # plug & subgraph
-    #     graph.attr('node', shape='box')
-    #     for elm in inputs:
-    #         # graph.node("{}_in_{}".format(prefix, elm), label="{0}".format(elm))
-    #         graph.node("{}_in_{}".format(prefix, elm))
-    #
-    #     for lbox in self._box_list:
-    #         lbox.draw(creator, graph, prefix=prefix)
-    #
-    #     graph.attr('node', shape='box')
-    #     for elm in outputs:
-    #         # graph.node("{}_out_{}".format(prefix, elm), label="{0}".format(elm))
-    #         graph.node("{}_out_{}".format(prefix, elm))
-    #
-    #     # Edge
-    #     # for elm in inputs:
-    #     #     print("{}_in_{}".format(prefix, elm))
-    #     #     print("{}_{}".format(prefix, elm.node))
-    #     for elm in inputs:
-    #         # graph.edge("{}_in_{}".format(prefix, elm), "{}_{}".format(prefix, elm.node), label="{0}".format(elm))
-    #         graph.edge("{}_in_{}".format(prefix, elm), "{}_{}".format(prefix, elm.node))
-    #
-    #     # for elm in outputs:
-    #     #     print("{}_{}".format(prefix, elm.node))
-    #     #     print("{}_out_{}".format(prefix, elm))
-    #     for elm in outputs:
-    #         # graph.edge("{}_{}".format(prefix, elm), "{}_out_{}".format(prefix, elm.node), label="{0}".format(elm))
-    #         graph.edge("{}_{}".format(prefix, elm.node), "{}_out_{}".format(prefix, elm))
-    #
-    #     for elm in self.edge_list:
-    #         # graph.edge("{}_{}".format(prefix, elm[0]), "{}_{}".format(prefix, elm[1]), label=elm[0][1], arrowtail=None)
-    #         graph.edge("{}_{}".format(prefix, elm[0]), "{}_{}".format(prefix, elm[1]))
-
-    def draw_graph(self, creator, parent_graph, prefix=''):
+    def draw_graph(self, creator, graph, prefix=''):
         inputs = self.in_list
         outputs = self.out_list
         print("in_list type  = {}".format(type(inputs)))
@@ -279,44 +306,47 @@ class LogicalGraphBox:
         print("in_list  = {}".format(inputs))
         print("out_list = {}".format(outputs))
 
+        # plug & subgraph
+        graph.attr('node', shape='box')
+        for elm in inputs:
+            # graph.node("{}_in_{}".format(prefix, elm), label="{0}".format(elm))
+            graph.node("{}_in_{}".format(prefix, elm))
+
+        # for lbox in self._box_list:
+        #     lbox.draw(creator, graph, prefix=prefix)
+
         color_name = self.get_box_color()
         subgraph_name = "cluster_{0}_{1}".format(prefix, self.id_name)
-        with parent_graph.subgraph(name=subgraph_name) as graph:
-            graph.attr(style='filled')
-            graph.attr(color=color_name)
-
-            # plug & subgraph
-            graph.attr('node', shape='box')
-            for elm in inputs:
-                # graph.node("{}_in_{}".format(prefix, elm), label="{0}".format(elm))
-                graph.node("{}_in_{}".format(prefix, elm))
-
+        with graph.subgraph(name=subgraph_name) as subgraph:
+            subgraph.attr(style='filled')
+            subgraph.attr(color=color_name)
             for lbox in self._box_list:
-                lbox.draw(creator, graph, prefix=prefix)
+                lbox.draw(creator, subgraph, prefix=prefix)
 
-            graph.attr('node', shape='box')
-            for elm in outputs:
-                # graph.node("{}_out_{}".format(prefix, elm), label="{0}".format(elm))
-                graph.node("{}_out_{}".format(prefix, elm))
+        graph.attr('node', shape='box')
+        for elm in outputs:
+            # graph.node("{}_out_{}".format(prefix, elm), label="{0}".format(elm))
+            graph.node("{}_out_{}".format(prefix, elm))
 
-            # Edge
-            for elm in inputs:
-                # graph.edge("{}_in_{}".format(prefix, elm), "{}_{}".format(prefix, elm.node), label="{0}".format(elm))
-                graph.edge("{}_in_{}".format(prefix, elm), "{}_{}".format(prefix, elm.node))
+        # Edge
+        for elm in inputs:
+            # graph.edge("{}_in_{}".format(prefix, elm), "{}_{}".format(prefix, elm.node), label="{0}".format(elm))
+            graph.edge("{}_in_{}".format(prefix, elm), "{}_{}".format(prefix, elm.node))
 
-            for elm in outputs:
-                # graph.edge("{}_{}".format(prefix, elm), "{}_out_{}".format(prefix, elm.node), label="{0}".format(elm))
-                graph.edge("{}_{}".format(prefix, elm.node), "{}_out_{}".format(prefix, elm))
+        for elm in outputs:
+            # graph.edge("{}_{}".format(prefix, elm), "{}_out_{}".format(prefix, elm.node), label="{0}".format(elm))
+            graph.edge("{}_{}".format(prefix, elm.node), "{}_out_{}".format(prefix, elm))
 
-            for elm in self.edge_list:
-                # graph.edge("{}_{}".format(prefix, elm[0]), "{}_{}".format(prefix, elm[1]), label=elm[0][1], arrowtail=None)
-                graph.edge("{}_{}".format(prefix, elm[0]), "{}_{}".format(prefix, elm[1]))
+        for elm in self.edge_list:
+            # graph.edge("{}_{}".format(prefix, elm[0]), "{}_{}".format(prefix, elm[1]), label=elm[0][1], arrowtail=None)
+            graph.edge("{}_{}".format(prefix, elm[0]), "{}_{}".format(prefix, elm[1]))
 
-            for elm in self.lambda_list:
-                # graph.edge("{}_in_{}".format(prefix, elm), "{}_{}".format(prefix, elm.node), label="{0}".format(elm))
-                src_name = "{}_in_{}".format(prefix, elm[0])
-                dst_name = "{}_out_{}".format(prefix, elm[1])
-                graph.edge(src_name, dst_name, dir="back")
+        for elm in self.lambda_list:
+            # graph.edge("{}_in_{}".format(prefix, elm), "{}_{}".format(prefix, elm.node), label="{0}".format(elm))
+            src_name = "{}_in_{}".format(prefix, elm[0])
+            dst_name = "{}_out_{}".format(prefix, elm[1])
+            # graph.edge(src_name, dst_name, dir="back")
+            graph.edge(src_name, dst_name, dir="back", tailport="n", headport="s")
 
     def draw(self, creator, graph, prefix=''):
         color_name = self.get_box_color()
@@ -326,14 +356,3 @@ class LogicalGraphBox:
             c.attr(color=color_name)
             for lbox in self._box_list:
                 lbox.draw(creator, c, prefix=prefix)
-
-        for elm in self.edge_list:
-            # graph.edge("{}_{}".format(prefix, elm[0]), "{}_{}".format(prefix, elm[1]), label=elm[0][1], arrowtail=None)
-            graph.edge("{}_{}".format(prefix, elm[0]), "{}_{}".format(prefix, elm[1]))
-
-        # Edge
-        for elm in self.lambda_list:
-            # graph.edge("{}_in_{}".format(prefix, elm), "{}_{}".format(prefix, elm.node), label="{0}".format(elm))
-            src_name = "{}_in_{}".format(prefix, elm[0])
-            dst_name = "{}_out_{}".format(prefix, elm[1])
-            graph.edge(src_name, dst_name, dir="back")
